@@ -16,4 +16,4 @@ public class TopFragment extends Fragment {
         return inflater.inflate(R.layout.top_fragment, container, false);
     }
 }
-}
+

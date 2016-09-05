@@ -22,4 +22,9 @@ public class BottomFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         text = (TextView) getActivity().findViewById(R.id.bf_text);
     }
+
+    public void changeText (String data)
+    {
+        text.setText(data);
+    }
 }

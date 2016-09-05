@@ -23,6 +23,37 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
     Communicator comm;
 
+    // Fragments are destroyed when orientation is changed. This will also destroy
+    // the instance variables of the fragment, so when the new fragment comes
+    // up after changing orientation, everything will be initialized. To prevent this
+    // we add the onSaveInstanceState override method, and we throw whichever
+    // variables we want to keep track of into the Bundle outstate. The bundle
+    // stores thinngs in pairs. An arbitrary name as string, and the variable.
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("counter", counter);
+    }
+
+
+    // We also add the onCreate override method so when we fire up the fragment,
+    // we take a look at the savedInstanceState Bundle, and see if we should be
+    // holding over variables from the last time the fragment was executed.
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if(savedInstanceState == null)
+        {
+            counter = 0;
+        }
+        else
+        {
+            counter = savedInstanceState.getInt("counter", 0);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.top_fragment, container, false);
@@ -49,5 +80,6 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         // data back from a fragment.
         comm.respond("The button was clicked " + counter + " times.");
     }
+
 }
 

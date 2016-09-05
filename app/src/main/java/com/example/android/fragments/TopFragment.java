@@ -35,6 +35,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         // This means comm now points to MainActivity
         comm = (Communicator) getActivity();
         button = (Button) getActivity().findViewById(R.id.tf_button);
+        button.setOnClickListener(this);
     }
 
     @Override
